@@ -1,6 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+      <!-- Accès réseau : nécessaire pour appeler l'API en version release -->
+       <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
-        android:label="registre_reclamations"
+        android:label="Réclamations BEM"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

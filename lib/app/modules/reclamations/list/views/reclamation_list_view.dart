@@ -45,7 +45,8 @@ class ReclamationListView extends GetView<ReclamationListController> {
       ),
       body: Column(
         children: [
-          _StatsDashboard(controller: controller),
+          if (Get.find<AuthService>().currentUser.value?.role != UserRole.delegue)
+            _StatsDashboard(controller: controller),
           _StatusFilterBar(controller: controller),
           _SearchBar(controller: controller),
           Expanded(

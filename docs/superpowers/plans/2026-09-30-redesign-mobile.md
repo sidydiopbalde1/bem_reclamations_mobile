@@ -1,4 +1,4 @@
-# Mobile Redesign — BEM Dakar Implementation Plan
+# Mobile Redesign -BEM Dakar Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -12,10 +12,10 @@
 
 ## Global Constraints
 
-- Couleur primaire BEM : `Color(0xFFCC0000)` — ne jamais hardcoder ailleurs, toujours via `AppColors.primary`
+- Couleur primaire BEM : `Color(0xFFCC0000)` -ne jamais hardcoder ailleurs, toujours via `AppColors.primary`
 - Pas de nouvelle dépendance pub : tout Material 3 natif Flutter
 - Conserver toutes les interfaces publiques des controllers intactes (les vues lisent les mêmes observables)
-- `ReclamationCard` remplace `ReclamationTile` — supprimer `reclamation_tile.dart` après remplacement de son import
+- `ReclamationCard` remplace `ReclamationTile` -supprimer `reclamation_tile.dart` après remplacement de son import
 - `flutter analyze` doit passer à 0 warning après chaque tâche
 
 ## Review Focus
@@ -23,8 +23,8 @@
 - **Wizard step 0 vide** : si l'utilisateur est VIGILE avec un seul bâtiment auto-sélectionné, `nextStep()` doit passer sans erreur même si les dropdowns ont été pré-remplis programmatiquement
 - **Stats compteur avec liste vide** : si `_cachedAll` est vide (premier chargement), `statusCounts` doit retourner des zéros proprement sans exception
 - **Timeline event sans commentaire** : le widget `_TimelineItem` ne doit pas rendre une section commentaire quand `event.comment` est null ou vide
-- **Hero card statut REJETEE** : la couleur `AppColors.statusRejetee` (`0xFF757575`) sur fond blanc donne peu de contraste — le fond du hero est `color.withValues(alpha: 0.10)` soit gris très clair, acceptable mais à vérifier visuellement
-- **Overflow catégorie dans la grille** : les labels de catégorie (ex: "Climatisation") sont longs pour une cellule de 4 colonnes — `maxLines: 1` + `overflow: TextOverflow.ellipsis` est requis
+- **Hero card statut REJETEE** : la couleur `AppColors.statusRejetee` (`0xFF757575`) sur fond blanc donne peu de contraste -le fond du hero est `color.withValues(alpha: 0.10)` soit gris très clair, acceptable mais à vérifier visuellement
+- **Overflow catégorie dans la grille** : les labels de catégorie (ex: "Climatisation") sont longs pour une cellule de 4 colonnes -`maxLines: 1` + `overflow: TextOverflow.ellipsis` est requis
 
 ---
 
@@ -53,8 +53,8 @@
   - `AppColors.priorityNormale` → `Color(0xFF42A5F5)`
   - `AppColors.priorityHaute` → `Color(0xFFFFA726)`
   - `AppColors.priorityUrgente` → `Color(0xFFEF5350)`
-  - `ReclamationStatusVisuals.color` (updated) — uses `AppColors.status*`
-  - `ReclamationPriorityVisuals.color` — **new extension**, uses `AppColors.priority*`
+  - `ReclamationStatusVisuals.color` (updated) -uses `AppColors.status*`
+  - `ReclamationPriorityVisuals.color` -**new extension**, uses `AppColors.priority*`
 
 - [ ] **Step 1: Créer `app_colors.dart`**
 
@@ -155,7 +155,7 @@ abstract final class AppTheme {
 }
 ```
 
-- [ ] **Step 3: Mettre à jour `reclamation_visuals.dart` — status colors + nouvelle extension priority**
+- [ ] **Step 3: Mettre à jour `reclamation_visuals.dart` -status colors + nouvelle extension priority**
 
 ```dart
 // lib/app/modules/reclamations/widgets/reclamation_visuals.dart
@@ -215,12 +215,12 @@ Résultat attendu : `No issues found!`
 
 ```bash
 git add lib/app/core/theme/app_colors.dart lib/app/core/theme/app_theme.dart lib/app/modules/reclamations/widgets/reclamation_visuals.dart
-git commit -m "feat: design system BEM rouge/blanc — AppColors, AppTheme Material3, priority colors"
+git commit -m "feat: design system BEM rouge/blanc -AppColors, AppTheme Material3, priority colors"
 ```
 
 ---
 
-## Task 2: Widgets partagés — PriorityBadge + StatusChip refonte
+## Task 2: Widgets partagés -PriorityBadge + StatusChip refonte
 
 **Files:**
 - Create: `lib/app/modules/reclamations/widgets/priority_badge.dart`
@@ -229,8 +229,8 @@ git commit -m "feat: design system BEM rouge/blanc — AppColors, AppTheme Mater
 **Interfaces:**
 - Consumes: `ReclamationPriorityVisuals.color` (Task 1), `AppColors` (Task 1)
 - Produces:
-  - `PriorityBadge({required ReclamationPriority priority})` — badge coloré selon priorité
-  - `StatusChip({required ReclamationStatus status})` — inchangé en signature, restyled
+  - `PriorityBadge({required ReclamationPriority priority})` -badge coloré selon priorité
+  - `StatusChip({required ReclamationStatus status})` -inchangé en signature, restyled
 
 - [ ] **Step 1: Créer `priority_badge.dart`**
 
@@ -269,7 +269,7 @@ class PriorityBadge extends StatelessWidget {
 }
 ```
 
-- [ ] **Step 2: Mettre à jour `status_chip.dart` — arrondi 20dp + couleur via AppColors**
+- [ ] **Step 2: Mettre à jour `status_chip.dart` -arrondi 20dp + couleur via AppColors**
 
 ```dart
 // lib/app/modules/reclamations/widgets/status_chip.dart
@@ -440,7 +440,7 @@ class ReclamationCard extends StatelessWidget {
 }
 ```
 
-- [ ] **Step 2: Mettre à jour `reclamation_list_view.dart` — remplacer l'import et l'usage**
+- [ ] **Step 2: Mettre à jour `reclamation_list_view.dart` -remplacer l'import et l'usage**
 
 Dans `lib/app/modules/reclamations/list/views/reclamation_list_view.dart` :
 - Remplacer la ligne `import '../../widgets/reclamation_tile.dart';`
@@ -465,7 +465,7 @@ Résultat attendu : `No issues found!`
 ```bash
 git add lib/app/modules/reclamations/widgets/reclamation_card.dart lib/app/modules/reclamations/list/views/reclamation_list_view.dart
 git rm lib/app/modules/reclamations/widgets/reclamation_tile.dart
-git commit -m "feat: ReclamationCard avec left-border priorité — remplace ReclamationTile"
+git commit -m "feat: ReclamationCard avec left-border priorité -remplace ReclamationTile"
 ```
 
 ---
@@ -476,7 +476,7 @@ git commit -m "feat: ReclamationCard avec left-border priorité — remplace Rec
 - Modify: `lib/app/modules/auth/login/views/login_view.dart`
 
 **Interfaces:**
-- Consumes: `AppColors`, `LoginController` (inchangé — `formKey`, `emailController`, `passwordController`, `errorMessage`, `isSubmitting`, `submit`)
+- Consumes: `AppColors`, `LoginController` (inchangé -`formKey`, `emailController`, `passwordController`, `errorMessage`, `isSubmitting`, `submit`)
 - Review Focus (wizard step 0 vide) : test de confirmation que `errorMessage` null n'affiche rien
 
 - [ ] **Step 1: Réécrire `login_view.dart`**
@@ -635,12 +635,12 @@ Résultat attendu : `No issues found!`
 
 ```bash
 git add lib/app/modules/auth/login/views/login_view.dart
-git commit -m "feat: login redesign — bandeau rouge BEM + card formulaire chevauchante"
+git commit -m "feat: login redesign -bandeau rouge BEM + card formulaire chevauchante"
 ```
 
 ---
 
-## Task 5: Écran Liste — mini-dashboard stats + filter chips + FAB
+## Task 5: Écran Liste -mini-dashboard stats + filter chips + FAB
 
 **Files:**
 - Modify: `lib/app/modules/reclamations/list/controllers/reclamation_list_controller.dart`
@@ -650,9 +650,9 @@ git commit -m "feat: login redesign — bandeau rouge BEM + card formulaire chev
 **Interfaces:**
 - Consumes: `AppColors`, `ReclamationCard` (Task 3), `ReclamationStatusVisuals.color`
 - Produces (controller additions):
-  - `Map<ReclamationStatus, int> get statusCounts` — counts calculés depuis `_cachedAll`
+  - `Map<ReclamationStatus, int> get statusCounts` -counts calculés depuis `_cachedAll`
 
-- [ ] **Step 1: Mettre à jour `reclamation_list_controller.dart` — ajouter cache stats**
+- [ ] **Step 1: Mettre à jour `reclamation_list_controller.dart` -ajouter cache stats**
 
 ```dart
 // lib/app/modules/reclamations/list/controllers/reclamation_list_controller.dart
@@ -674,7 +674,7 @@ class ReclamationListController extends GetxController with StateMixin<List<Recl
   final statusFilter = Rxn<ReclamationStatus>();
   late final Worker _filterWorker;
 
-  // Cache pour les stats — mis à jour uniquement lors du fetch sans filtre
+  // Cache pour les stats -mis à jour uniquement lors du fetch sans filtre
   var _cachedAll = <Reclamation>[];
 
   Map<ReclamationStatus, int> get statusCounts => {
@@ -1030,7 +1030,7 @@ Résultat attendu : `No issues found!`
 git add lib/app/modules/reclamations/list/controllers/reclamation_list_controller.dart \
         lib/app/core/widgets/stat_counter.dart \
         lib/app/modules/reclamations/list/views/reclamation_list_view.dart
-git commit -m "feat: liste — mini-dashboard stats, filter chips restyled, ReclamationCard"
+git commit -m "feat: liste -mini-dashboard stats, filter chips restyled, ReclamationCard"
 ```
 
 ---
@@ -1045,14 +1045,14 @@ git commit -m "feat: liste — mini-dashboard stats, filter chips restyled, Recl
 **Interfaces:**
 - Consumes: `AppColors`, `ReclamationFormData`, `ReclamationCategoryVisuals.icon`
 - Produces (controller additions):
-  - `final currentStep = 0.obs` — étape courante (0, 1, 2)
-  - `final pageController = PageController()` — pour `PageView`
-  - `final step0FormKey = GlobalKey<FormState>()` — validation étape 0
-  - `final step1FormKey = GlobalKey<FormState>()` — validation étape 1
-  - `bool nextStep()` — valide, avance, retourne false si invalide
-  - `void previousStep()` — revient en arrière
+  - `final currentStep = 0.obs` -étape courante (0, 1, 2)
+  - `final pageController = PageController()` -pour `PageView`
+  - `final step0FormKey = GlobalKey<FormState>()` -validation étape 0
+  - `final step1FormKey = GlobalKey<FormState>()` -validation étape 1
+  - `bool nextStep()` -valide, avance, retourne false si invalide
+  - `void previousStep()` -revient en arrière
 
-- [ ] **Step 1: Mettre à jour `reclamation_form_controller.dart` — ajouter gestion wizard**
+- [ ] **Step 1: Mettre à jour `reclamation_form_controller.dart` -ajouter gestion wizard**
 
 ```dart
 // lib/app/modules/reclamations/form/controllers/reclamation_form_controller.dart
@@ -1123,7 +1123,7 @@ class ReclamationFormController extends GetxController with StateMixin<Reclamati
 
   /// Valide l'étape courante et avance si valide. Retourne false si validation échoue.
   bool nextStep() {
-    // La grille de catégories n'est pas un FormField — vérification manuelle sur étape 1.
+    // La grille de catégories n'est pas un FormField -vérification manuelle sur étape 1.
     if (currentStep.value == 1 && selectedCategory.value == null) {
       AppSnackbar.show('Veuillez sélectionner un type de problème');
       return false;
@@ -1783,12 +1783,12 @@ Résultat attendu : `No issues found!`
 git add lib/app/modules/reclamations/form/controllers/reclamation_form_controller.dart \
         lib/app/core/widgets/step_indicator.dart \
         lib/app/modules/reclamations/form/views/reclamation_form_view.dart
-git commit -m "feat: formulaire wizard 3 étapes — localisation, détail, confirmation"
+git commit -m "feat: formulaire wizard 3 étapes -localisation, détail, confirmation"
 ```
 
 ---
 
-## Task 7: Écran Détail — hero card + sections + timeline verticale
+## Task 7: Écran Détail -hero card + sections + timeline verticale
 
 **Files:**
 - Modify: `lib/app/modules/reclamations/detail/views/reclamation_detail_view.dart`
@@ -2266,7 +2266,7 @@ Résultat attendu : `No issues found!`
 
 ```bash
 git add lib/app/modules/reclamations/detail/views/reclamation_detail_view.dart
-git commit -m "feat: détail redesign — hero card dynamique, sections cards, timeline verticale"
+git commit -m "feat: détail redesign -hero card dynamique, sections cards, timeline verticale"
 ```
 
 ---

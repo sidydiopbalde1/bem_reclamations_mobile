@@ -1,4 +1,4 @@
-# Redesign Mobile — Registre des Réclamations BEM Dakar
+# Redesign Mobile -Registre des Réclamations BEM Dakar
 
 **Date :** 2026-09-30  
 **Statut :** Approuvé  
@@ -90,7 +90,7 @@ Liste plate avec filtre statique.
 **Liste de réclamations**
 - Card par réclamation avec :
   - Left-border colorée (4dp) selon priorité
-  - Ligne 1 : `#N°XXX — Catégorie` (icône + nom) + badge statut (coin droit)
+  - Ligne 1 : `#N°XXX -Catégorie` (icône + nom) + badge statut (coin droit)
   - Ligne 2 : Bâtiment · Salle · Programme
   - Ligne 3 : Date + nom déclarant (grisé)
 - FAB rouge "+" en bas à droite
@@ -105,21 +105,21 @@ Liste plate avec filtre statique.
 ### Layout actuel
 Scroll unique avec tous les champs.
 
-### Nouveau layout — Wizard 3 étapes
+### Nouveau layout -Wizard 3 étapes
 
 **Progress bar** : 3 steps avec indicateurs numérotés (cercles rouges/gris) en haut
 
-**Étape 1 — Localisation**
+**Étape 1 -Localisation**
 - Dropdown Bâtiment (avec icône)
 - Dropdown Salle (activé après bâtiment sélectionné, cascading)
 - Dropdown Programme
 
-**Étape 2 — Détail**
+**Étape 2 -Détail**
 - Grille de catégories : 4 colonnes d'icônes tapables (Climatisation, Mobilier, Éclairage, etc.) avec label sous
 - Sélecteur de priorité : 4 chips horizontaux colorés (Basse / Normale / Haute / Urgente)
 - Champ Description : multiline, compteur de caractères (1000 max)
 
-**Étape 3 — Confirmation**
+**Étape 3 -Confirmation**
 - Récapitulatif en lecture seule des choix
 - Bouton "Soumettre" rouge pleine largeur
 
@@ -196,4 +196,4 @@ lib/app/
 |---------|-------|
 | `google_fonts` (optionnel) | Font Inter si disponible |
 
-Aucune autre dépendance externe requise — tout le design utilise Flutter Material 3 natif.
+Aucune autre dépendance externe requise -tout le design utilise Flutter Material 3 natif.

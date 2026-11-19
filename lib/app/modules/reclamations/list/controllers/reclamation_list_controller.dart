@@ -23,7 +23,7 @@ class ReclamationListController extends GetxController with StateMixin<List<Recl
 
   int _offset = 0;
 
-  // Cache pour les stats — mis à jour uniquement lors du fetch sans filtre et sans recherche
+  // Cache pour les stats -mis à jour uniquement lors du fetch sans filtre et sans recherche
   var _cachedAll = <Reclamation>[];
 
   Map<ReclamationStatus, int> get statusCounts => {

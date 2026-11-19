@@ -65,7 +65,7 @@ class ReclamationFormController extends GetxController with StateMixin<Reclamati
 
   /// Valide l'étape courante et avance si valide. Retourne false si validation échoue.
   bool nextStep() {
-    // La grille de catégories n'est pas un FormField — vérification manuelle sur étape 1.
+    // La grille de catégories n'est pas un FormField -vérification manuelle sur étape 1.
     if (currentStep.value == 1 && selectedCategory.value == null) {
       AppSnackbar.show('Veuillez sélectionner un type de problème');
       return false;
